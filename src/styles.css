@@ -16,7 +16,20 @@ body {
   flex-direction: column;
 }
 
+.message {
+  padding: 8px;
+}
+
 .options {
   display: flex;
   justify-content: space-around;
+  padding: 8px;
+}
+
+.chart {
+  padding: 8px;
+}
+
+p {
+  margin: 0;
 }

@@ -51,6 +51,10 @@ function Scoreboard() {
 
   return (
     <div className="content">
+      <div className="message">
+        {!voted && <p>Where should I go next?</p>}
+        {!!voted && <p>Thanks for voting!</p>}
+      </div>
       {!voted && (
         <div className="options">
           {data.scoreboard.map((board: IScoreboard, index: number) => (
@@ -64,7 +68,6 @@ function Scoreboard() {
           ))}
         </div>
       )}
-      {!!voted && <p>Thanks for voting!</p>}
       <div className="chart">
         <Results initalData={data} />
       </div>

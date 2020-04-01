@@ -1,11 +1,11 @@
 import { useQuery, useSubscription, useMutation } from '@apollo/react-hooks';
+import createPersistedState from 'use-persisted-state';
 import * as React from 'react';
 import gql from 'graphql-tag';
 
 import { PieChart } from './PieChart';
 import { IScoreboard } from './types';
 
-const createPersistedState = require('use-persisted-state');
 const useVote = createPersistedState('voted');
 
 const QUERY = gql`

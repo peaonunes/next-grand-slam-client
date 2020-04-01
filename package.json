@@ -17,7 +17,8 @@
     "react-dom": "^16.12.0",
     "react-minimal-pie-chart": "7.0.0",
     "react-scripts": "3.3.0",
-    "subscriptions-transport-ws": "0.9.16"
+    "subscriptions-transport-ws": "0.9.16",
+    "use-persisted-state": "0.3.0"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
@@ -32,5 +33,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

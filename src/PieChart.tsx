@@ -13,7 +13,7 @@ interface PieChartProps {
 
 const PieChart: React.FunctionComponent<PieChartProps> = ({ values }) => {
   const data = values.map(scoreboard => ({
-    color: scoreboard.id === "0" ? "#E38627" : "#C13C37",
+    color: scoreboard.id === "0" ? "#9FB641" : "#5A91D3",
     title: scoreboard.name,
     value: scoreboard.votes
   }));

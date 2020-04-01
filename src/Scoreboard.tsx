@@ -1,40 +1,40 @@
-import { useQuery, useSubscription, useMutation } from "@apollo/react-hooks";
+import { useQuery, useSubscription, useMutation } from '@apollo/react-hooks';
 import createPersistedState from 'use-persisted-state';
-import * as React from "react";
-import gql from "graphql-tag";
+import * as React from 'react';
+import gql from 'graphql-tag';
 
-import { PieChart } from "./PieChart";
-import { IScoreboard } from "./types"
+import { PieChart } from './PieChart';
+import { IScoreboard } from './types';
 
 const useVote = createPersistedState('voted');
 
 const QUERY = gql`
-query {
-  scoreboard {
-    id
-    name
-    votes
+  query {
+    scoreboard {
+      id
+      name
+      votes
+    }
   }
-}
 `;
 
 const MUTATION = gql`
-mutation vote($id: ID!) {
-  vote(id: $id) {
-    id
-    name
+  mutation vote($id: ID!) {
+    vote(id: $id) {
+      id
+      name
+    }
   }
-}
 `;
 
 const SUBSCRIPTION = gql`
-subscription {
-  scoreboard {
-    id
-    name
-    votes
+  subscription {
+    scoreboard {
+      id
+      name
+      votes
+    }
   }
-}
 `;
 
 function Scoreboard() {
@@ -43,28 +43,28 @@ function Scoreboard() {
   const [vote] = useMutation(MUTATION);
 
   const handleClick = (id: string): void => {
-    vote({ variables: { id } }).then(() => {
-      setVote(id);
-    });
-  }
+    vote({ variables: { id } }).then(() => setVote(id));
+  };
 
   if (error) return <h1>Eeeps.</h1>;
   if (loading) return <p>Loading options...</p>;
 
   return (
     <div className="content">
-      {!voted && (<div className="options">
-        {data.scoreboard.map((board: IScoreboard, index: number) => (
-          <button
-            key={index}
-            style={{color: board.id === '0' ? '#9FB641' : '#5A91D3'}}
-            onClick={() => handleClick(board.id)}
-          >
-            {board.name}
-          </button>
-        ))}
-      </div>)}
-      {!!voted && (<p>Thanks for voting!</p>)}
+      {!voted && (
+        <div className="options">
+          {data.scoreboard.map((board: IScoreboard, index: number) => (
+            <button
+              key={index}
+              style={{ color: board.id === '0' ? '#9FB641' : '#5A91D3' }}
+              onClick={() => handleClick(board.id)}
+            >
+              {board.name}
+            </button>
+          ))}
+        </div>
+      )}
+      {!!voted && <p>Thanks for voting!</p>}
       <div className="chart">
         <Results initalData={data} />
       </div>
@@ -72,10 +72,12 @@ function Scoreboard() {
   );
 }
 
+interface DataReponse {
+  scoreboard: IScoreboard[];
+}
+
 interface ResultsProps {
-  initalData: {
-    scoreboard: IScoreboard[]
-  }
+  initalData: DataReponse;
 }
 
 function Results({ initalData }: ResultsProps) {
@@ -83,7 +85,11 @@ function Results({ initalData }: ResultsProps) {
 
   if (error) return <h1>Eeeps.</h1>;
 
-  const values = data?.scoreboard || initalData.scoreboard;
+  let values = initalData.scoreboard;
+
+  if (!!data) {
+    values = data.scoreboard;
+  }
 
   return <PieChart values={values} />;
 }

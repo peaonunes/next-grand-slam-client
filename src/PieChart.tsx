@@ -1,5 +1,5 @@
-import ReactMinimalPieChart from "react-minimal-pie-chart";
-import * as React from "react";
+import ReactMinimalPieChart from 'react-minimal-pie-chart';
+import * as React from 'react';
 
 interface Board {
   id: string;
@@ -13,7 +13,7 @@ interface PieChartProps {
 
 const PieChart: React.FunctionComponent<PieChartProps> = ({ values }) => {
   const data = values.map(scoreboard => ({
-    color: scoreboard.id === "0" ? "#9FB641" : "#5A91D3",
+    color: scoreboard.id === '0' ? '#9FB641' : '#5A91D3',
     title: scoreboard.name,
     value: scoreboard.votes
   }));
@@ -26,9 +26,9 @@ const PieChart: React.FunctionComponent<PieChartProps> = ({ values }) => {
       label={true}
       labelPosition={50}
       labelStyle={{
-        fill: "white",
-        fontFamily: "sans-serif",
-        fontSize: "5px"
+        fill: 'white',
+        fontFamily: 'sans-serif',
+        fontSize: '5px'
       }}
       lengthAngle={180}
       lineWidth={100}

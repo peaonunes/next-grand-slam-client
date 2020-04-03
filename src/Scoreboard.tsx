@@ -38,7 +38,7 @@ const SUBSCRIPTION = gql`
 `;
 
 function Scoreboard() {
-  const [voted, setVote] = useVote('voted');
+  const [voted, setVote] = useVote();
   const { loading, error, data } = useQuery(QUERY);
   const [vote] = useMutation(MUTATION);
 
